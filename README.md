@@ -7,7 +7,13 @@ Value objects for quantities.  Inspired by the mathiasverraes/money library.
 ### Usage
 
 ```php
-$quantity = new Quantity(new Amount(10), new Unit('each'));
+$quantity = new Quantity(new Amount(10), Unit::EACH());
+```
+
+What about this?
+
+```php
+$quantity = new Quantity(Amount::10(), Unit::EACH());
 ```
 
 ### Weight
