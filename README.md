@@ -24,7 +24,7 @@ $dozen = Quantity::DOZEN(3);
 
 ```php
 $pounds = Weight::LB(2);
-$ounces = $pounds->convertTo(Uom::OZ());
+$ounces = $pounds->to(Uom::OZ());
 
 echo $ounces->getAmount(); // 32
 ```

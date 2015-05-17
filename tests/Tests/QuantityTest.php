@@ -11,7 +11,7 @@ namespace Quantity\Tests;
 
 use Quantity\Amount,
     Quantity\Quantity,
-    Quantity\Quantity\Unit;
+    Quantity\Uom;
 
 /**
  * QuantityTest
@@ -29,9 +29,9 @@ class QuantityTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructor()
     {
-        $quantity = new Quantity(new Amount(10), new Unit('EACH'));
+        $quantity = Quantity::EACH(10);
 
         $this->assertEquals(new Amount(10), $quantity->getAmount());
-        $this->assertSame('EACH', $quantity->getUnit()->getName());
+        $this->assertSame('EACH', $quantity->getUom()->getName());
     }
 }

@@ -34,7 +34,7 @@ class WeightTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('LB', $weight->getUom()->getName());
         $this->assertSame('1/2', (string) $weight->getAmount());
 
-        $newWeight = $weight->convertTo(Uom::OZ());
+        $newWeight = $weight->to(Uom::OZ());
 
         $this->assertSame('8', (string) $newWeight->getAmount());
     }

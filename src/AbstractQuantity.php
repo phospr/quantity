@@ -121,7 +121,7 @@ abstract class AbstractQuantity
      *
      * @return mixed
      */
-    public function convertTo(Uom $uom)
+    public function to(Uom $uom)
     {
         // Get the conversion factor as a Fraction
         $conversionFactor = Uom::getConversionFactor(

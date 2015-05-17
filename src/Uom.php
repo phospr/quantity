@@ -61,7 +61,7 @@ class Uom
         }
 
         // can't find Uom by name
-        throw new InvalidUomException($name);
+        throw new Exception\InvalidUomException($name);
     }
 
     /**
