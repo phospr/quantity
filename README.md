@@ -1,30 +1,72 @@
-# Quantity
+# Quantity/Quantity
 
-Value objects for quantities.  Inspired by the mathiasverraes/money library.
+A library to represent various quantities as value objects with the ability to convert from one Unit of Measurement to another.  Inspired by [mathiasverraes/money](https://github.com/mathiasverraes/money/).
+
+A Quantity is made up of an Amount (expressed as a [Fraction](https://github.com/yeriki/Fractions) and a Uom (Unit of Measure).
+
+Here are two examples:
+
+```php
+$quantity = new Quantity(new Amount(10), new Uom('EACH');
+$weight = new Weight(new Amount(14), new Uom('OZ');
+```
 
 ## Usage
 
-**The usage below is the proposed usage and has not yet been coded.**
+#### Creating Uoms
 
-### Simple Quantities
-
-The following three examples are equivalent
+Units of Measure can be created in the following manner.  These two examples are equivalent:
 
 ```php
-$quantity = new Quantity(new Amount(10), new Uom('EACH'));
-$quantity = new Quantity(new Amount(10), Uom::EACH());
-$quantity = Quantity::EACH(10);
+$pounds = new Uom('LB');
+$pounds = Uom::LB();
 ```
+
+#### Creating Quantities
+
+Quantities can be created in any ofe the following ways.  These three examples are equivalent:
 
 ```php
-$dozen = Quantity::DOZEN(3);
+$weight = new Weight(new Amount(10), new Uom('LB'));
+$weight = new Weight(new Amount(10), Uom::LB());
+$weight = Weight::LB(10);
 ```
 
-### Weight
+#### Converting Quantities
+
+In the following example, we convert 2 lb (pounds) into ounces:
 
 ```php
 $pounds = Weight::LB(2);
 $ounces = $pounds->to(Uom::OZ());
 
 echo $ounces->getAmount(); // 32
+```
+
+The following types of Quantities are available:
+
+* Quantity (simple quantity)
+* Weight
+* Length (coming soon)
+* Volume (coming soon)
+
+#### Using Fractions
+
+The Amount part of a Quantity is expressed as a [Fraction](https://github.com/yeriki/Fractions).  This allows us to convert Quantities accurately:
+
+```php
+$ounces = Weight::OZ(28);
+$pounds = $ounces->to(Uom::LB());
+echo $pounds; // 1 3/4
+```
+
+
+## Installation
+
+```json
+{
+    "require": {
+        "quantity/quantity": "dev-master"
+    }
+}
 ```
