@@ -16,7 +16,9 @@ $quantity = new Quantity(new Amount(10), Uom::EACH());
 $quantity = Quantity::EACH(10);
 ```
 
+```php
 $dozen = Quantity::DOZEN(3);
+```
 
 ### Weight
 
