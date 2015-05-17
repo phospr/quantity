@@ -2,25 +2,27 @@
 
 Value objects for quantities.  Inspired by the mathiasverraes/money library.
 
+## Usage
+
 **The usage below is the proposed usage and has not yet been coded.**
 
-### Usage
+### Simple Quantities
+
+The following three examples are equivalent
 
 ```php
-$quantity = new Quantity(new Amount(10), Unit::EACH());
+$quantity = new Quantity(new Amount(10), new Uom('EACH'));
+$quantity = new Quantity(new Amount(10), Uom::EACH());
+$quantity = Quantity::EACH(10);
 ```
 
-What about this?
-
-```php
-$quantity = new Quantity(Amount::10(), Unit::EACH());
-```
+$dozen = Quantity::DOZEN(3);
 
 ### Weight
 
 ```php
-$pounds = new Weight(new Amount(1), Unit::LB());
-$ounces = $weight->convert(Unit::OZ());
+$pounds = Weight::LB(2);
+$ounces = $pounds->convertTo(Unit::OZ());
 
-echo $ounces->getAmount(); // 16
+echo $ounces->getAmount(); // 32
 ```

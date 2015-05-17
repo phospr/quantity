@@ -9,8 +9,9 @@
 
 namespace Quantity\Tests;
 
-use Quantity\Quantity,
-    Quantity\Unit;
+use Quantity\Amount,
+    Quantity\Quantity,
+    Quantity\Quantity\Unit;
 
 /**
  * QuantityTest
@@ -28,9 +29,9 @@ class QuantityTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructor()
     {
-        $quantity = new \Quantity\Quantity(10, new Unit('each'));
+        $quantity = new Quantity(new Amount(10), new Unit('EACH'));
 
-        $this->assertSame(10, $quantity->getAmount());
-        $this->assertSame('each', $quantity->getUnit()->getName());
+        $this->assertEquals(new Amount(10), $quantity->getAmount());
+        $this->assertSame('EACH', $quantity->getUnit()->getName());
     }
 }

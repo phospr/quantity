@@ -9,17 +9,16 @@
 
 namespace Quantity;
 
-use Quantity\Quantity\Unit;
+use Yeriki\Fractions\Fraction;
 
 /**
- * Quantity
+ * Amount
  *
- * A Value Object to describe a quantity, which consists of an amount
- * and a unit of measure
+ * A Value Object that supports fractions
  *
  * @author Tom Haskins-Vaughan <tom@tomhv.uk>
- * @since  0.1.0
+ * @since  0.3.0
  */
-class Quantity extends AbstractQuantity
+class Amount extends Fraction
 {
 }

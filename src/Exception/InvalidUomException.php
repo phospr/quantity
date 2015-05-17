@@ -7,19 +7,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Quantity;
-
-use Quantity\Quantity\Unit;
+namespace Quantity\Exception;
 
 /**
- * Quantity
+ * InvalidUomException
  *
- * A Value Object to describe a quantity, which consists of an amount
- * and a unit of measure
+ * Thrown when trying to use the wrong type of Uom for a type of Quantity
  *
  * @author Tom Haskins-Vaughan <tom@tomhv.uk>
- * @since  0.1.0
+ * @since  0.3.0
  */
-class Quantity extends AbstractQuantity
+class InvalidUomException extends \InvalidArgumentException
 {
 }

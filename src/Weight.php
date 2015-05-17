@@ -9,17 +9,12 @@
 
 namespace Quantity;
 
-use Quantity\Quantity\Unit;
-
 /**
- * Quantity
- *
- * A Value Object to describe a quantity, which consists of an amount
- * and a unit of measure
+ * Weight
  *
  * @author Tom Haskins-Vaughan <tom@tomhv.uk>
- * @since  0.1.0
+ * @since  0.3.0
  */
-class Quantity extends AbstractQuantity
+class Weight extends AbstractQuantity
 {
 }
