@@ -2,7 +2,7 @@
 
 A library to represent various quantities as value objects with the ability to convert from one Unit of Measurement to another.  Inspired by [mathiasverraes/money](https://github.com/mathiasverraes/money/).
 
-A Quantity is made up of an Amount (expressed as a [Fraction](https://github.com/yeriki/Fractions) and a Uom (Unit of Measure).
+A Quantity is made up of an Amount (expressed as a [Fraction](https://github.com/yeriki/Fractions)) and a Uom (Unit of Measure).
 
 Here are two examples:
 
@@ -24,7 +24,7 @@ $pounds = Uom::LB();
 
 #### Creating Quantities
 
-Quantities can be created in any ofe the following ways.  These three examples are equivalent:
+Quantities can be created in any of the following ways.  These three examples are equivalent:
 
 ```php
 $weight = new Weight(new Amount(10), new Uom('LB'));
