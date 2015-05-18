@@ -131,7 +131,7 @@ abstract class AbstractQuantity
 
         // Multiply the amount by the conversion factor and create a new
         // Weight with the new Unit
-        return new Weight(
+        return new static(
             $this->getAmount()->multiply($conversionFactor),
             $uom
         );
