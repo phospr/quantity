@@ -7,8 +7,8 @@ A Quantity is made up of an Amount (expressed as a [Fraction](https://github.com
 Here are two examples:
 
 ```php
-$quantity = new Quantity(new Amount(10), new Uom('EACH');
-$weight = new Weight(new Amount(14), new Uom('OZ');
+$quantity = new Quantity(new Amount(10), new Uom('EACH'));
+$weight = new Weight(new Amount(14), new Uom('OZ'));
 ```
 
 ## Usage
