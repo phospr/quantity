@@ -65,6 +65,19 @@ class Uom
     }
 
     /**
+     * __toString
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.6.0
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    /**
      * Convenience method for creating Uom objects
      *
      * e.g. Uom::OZ(), Uom::LB();

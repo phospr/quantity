@@ -34,4 +34,17 @@ class QuantityTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(new Amount(10), $quantity->getAmount());
         $this->assertSame('EACH', $quantity->getUom()->getName());
     }
+
+    /**
+     * Test __toString()
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.6.0
+     */
+    public function testToString()
+    {
+        $quantity = Quantity::EACH(10);
+
+        $this->assertSame('10 EACH', (string) $quantity);
+    }
 }

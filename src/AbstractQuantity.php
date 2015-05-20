@@ -61,6 +61,23 @@ abstract class AbstractQuantity
     }
 
     /**
+     * __toString()
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.6.0
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return sprintf(
+            '%s %s',
+            $this->getAmount(),
+            $this->getUom()
+        );
+    }
+
+    /**
      * Convenience method for creating Quantity objects
      *
      * e.g. Weight::OZ(10), Quantity::EACH(14)

@@ -30,4 +30,16 @@ class UomTest extends \PHPUnit_Framework_TestCase
         $oz = Uom::OZ();
         $this->assertSame('OZ', $oz->getName());
     }
+
+    /**
+     * Test __toString
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.6.0
+     */
+    public function testToString()
+    {
+        $oz = Uom::OZ();
+        $this->assertSame('OZ', (string) $oz);
+    }
 }

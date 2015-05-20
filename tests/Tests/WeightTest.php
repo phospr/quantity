@@ -38,4 +38,17 @@ class WeightTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame('8', (string) $newWeight->getAmount());
     }
+
+    /**
+     * Test __toString()
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.6.0
+     */
+    public function testToString()
+    {
+        $weight = Weight::LB(1, 3);
+
+        $this->assertSame('1/3 LB', (string) $weight);
+    }
 }
