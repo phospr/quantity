@@ -141,7 +141,12 @@ class Uom
     public static function getUoms()
     {
         if(!isset(static::$uoms)) {
-           static::$uoms = require __DIR__.'/uoms.php';
+            static::$uoms = json_decode(
+                utf8_encode(
+                    file_get_contents(__DIR__.'/uoms.json')
+                ),
+                true
+            );
         }
 
         return static::$uoms;
