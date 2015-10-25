@@ -4,7 +4,7 @@ A library to represent various quantities as value objects with the ability to c
 
 A Quantity is made up of an Amount (expressed as a [Fraction](https://github.com/yeriki/Fractions)) and a Uom (Unit of Measure).
 
-Currently, only Weight is implemented, but other possibilities include (Time, Quantity, Volume, Length etc.).
+Currently, only Weight is implemented, but other possibilities include Time, Quantity, Volume, Length etc.
 
 ```php
 $weight = new Weight(new Amount(14), new Uom('OZ'));
