@@ -4,10 +4,9 @@ A library to represent various quantities as value objects with the ability to c
 
 A Quantity is made up of an Amount (expressed as a [Fraction](https://github.com/yeriki/Fractions)) and a Uom (Unit of Measure).
 
-Here are two examples:
+Currently, only Weight is implemented, but other possibilities include (Time, Quantity, Volume, Length etc.).
 
 ```php
-$quantity = new Quantity(new Amount(10), new Uom('EACH'));
 $weight = new Weight(new Amount(14), new Uom('OZ'));
 ```
 
@@ -43,13 +42,6 @@ $ounces = $pounds->to(Uom::OZ());
 echo $ounces->getAmount(); // 32
 ```
 
-The following types of Quantities are available:
-
-* Quantity (simple quantity)
-* Weight
-* Length (coming soon)
-* Volume (coming soon)
-
 #### Using Fractions
 
 The Amount part of a Quantity is expressed as a [Fraction](https://github.com/yeriki/Fractions).  This allows us to convert Quantities accurately:
@@ -57,7 +49,7 @@ The Amount part of a Quantity is expressed as a [Fraction](https://github.com/ye
 ```php
 $ounces = Weight::OZ(28);
 $pounds = $ounces->to(Uom::LB());
-echo $pounds; // 1 3/4
+echo $pounds; // 1 3/4 LB
 ```
 
 
