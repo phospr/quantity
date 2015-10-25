@@ -9,6 +9,8 @@
 
 namespace Quantity;
 
+use \Yeriki\Fractions\Fraction;
+
 /**
  * Uom (Unit of Measure)
  *
@@ -124,10 +126,24 @@ class Uom
     public static function getConversionFactor(Uom $from, Uom $to)
     {
         if(!isset(static::$conversions)) {
-           static::$conversions = require __DIR__.'/conversions.php';
+            static::$conversions = json_decode(
+                utf8_encode(
+                    file_get_contents(__DIR__.'/conversions.json')
+                ),
+                true
+            );
         }
 
-        return static::$conversions[$from->getName()][$to->getName()];
+        $conversionValues = static::$conversions[$from->getName()][$to->getName()];
+
+        if (count($conversionValues) > 1) {
+            return new Fraction(
+                $conversionValues[0],
+                $conversionValues[1]
+            );
+        } else {
+            return new Fraction($conversionValues[0]);
+        }
     }
 
     /**
