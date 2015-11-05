@@ -9,11 +9,13 @@
 
 namespace Quantity;
 
+use Yeriki\Fractions\Fraction;
+
 /**
  * AbstractQuantity
  *
  * A base value object for various types of quantity: weight, length, volume,
- * etc. Made up of an Amount and a Uom
+ * etc. Made up of an amount (Fraction) and a Uom
  *
  * @author Tom Haskins-Vaughan <tom@tomhv.uk>
  * @since  0.3.0
@@ -23,7 +25,7 @@ abstract class AbstractQuantity
     /**
      * $amount
      *
-     * @var Amount
+     * @var Fraction
      */
     protected $amount;
 
@@ -40,12 +42,12 @@ abstract class AbstractQuantity
      * @author Tom Haskins-Vaughan <tom@tomhv.uk>
      * @since  0.3.0
      *
-     * @param Amount $amount
-     * @param Unit   $unit
+     * @param Fraction $amount
+     * @param Unit     $unit
      *
      * @throws \Quantity\InvalidAmountException
      */
-    public function __construct(Amount $amount, Uom $uom)
+    public function __construct(Fraction $amount, Uom $uom)
     {
         $reflection = new \ReflectionClass($this);
         $subClassName = $reflection->getShortName();
@@ -94,11 +96,11 @@ abstract class AbstractQuantity
     {
         if (count($arguments) > 1) {
             return new static(
-                new Amount($arguments[0], $arguments[1]),
+                new Fraction($arguments[0], $arguments[1]),
                 new Uom($method)
             );
         } else {
-            return new static(new Amount($arguments[0]), new Uom($method));
+            return new static(new Fraction($arguments[0]), new Uom($method));
         }
     }
 
@@ -108,7 +110,7 @@ abstract class AbstractQuantity
      * @author Tom Haskins-Vaughan <tom@tomhv.uk>
      * @since  0.3.0
      *
-     * @return Amount
+     * @return Fraction
      */
     public function getAmount()
     {
