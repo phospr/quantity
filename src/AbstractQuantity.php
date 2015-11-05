@@ -9,7 +9,7 @@
 
 namespace Quantity;
 
-use Yeriki\Fractions\Fraction;
+use Phospr\Fraction;
 
 /**
  * AbstractQuantity

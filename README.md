@@ -2,7 +2,7 @@
 
 A library to represent various quantities as value objects with the ability to convert from one Unit of Measurement to another.  Inspired by [mathiasverraes/money](https://github.com/mathiasverraes/money/).
 
-A Quantity is made up of an amount (expressed as a [Fraction](https://github.com/yeriki/Fractions)) and a Uom (Unit of Measure).
+A Quantity is made up of an amount (expressed as a [Fraction](https://github.com/phospr/fraction)) and a Uom (Unit of Measure).
 
 Currently, only Weight is implemented, but other possibilities include Quantity, Volume, Length etc.
 
@@ -44,7 +44,7 @@ echo $ounces->getAmount(); // 32
 
 #### Using Fractions
 
-The amount part of a Quantity is expressed as a [Fraction](https://github.com/yeriki/Fractions).  This allows us to convert Quantities accurately:
+The amount part of a Quantity is expressed as a [Fraction](https://github.com/phospr/fraction).  This allows us to convert Quantities accurately:
 
 ```php
 $ounces = Weight::OZ(28);
