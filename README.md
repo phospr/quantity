@@ -1,4 +1,4 @@
-# Quantity/Quantity
+# Phospr/Quantity
 
 A library to represent various quantities as value objects with the ability to convert from one Unit of Measurement to another.  Inspired by [mathiasverraes/money](https://github.com/mathiasverraes/money/).
 

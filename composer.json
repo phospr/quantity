@@ -1,5 +1,5 @@
 {
-    "name": "quantity/quantity",
+    "name": "phospr/quantity",
     "description": "PHP value objects for quantities",
     "license": "MIT",
     "minimum-stability": "dev",
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Quantity\\": "src"
+            "Phospr\\": "src"
         }
     }
 }
