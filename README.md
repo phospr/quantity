@@ -58,7 +58,7 @@ echo $pounds; // 1 3/4 LB
 ```json
 {
     "require": {
-        "quantity/quantity": "dev-master"
+        "phospr/quantity": "dev-master"
     }
 }
 ```
