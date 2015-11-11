@@ -1,4 +1,7 @@
 {
+    "Quantity": {
+        "EACH": "Each"
+    },
     "Weight": {
         "OZ": "US or imperial ounces",
         "LB": "US or imperial pounds",
