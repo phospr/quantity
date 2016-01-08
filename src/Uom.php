@@ -167,4 +167,19 @@ class Uom
 
         return static::$uoms;
     }
+
+    /**
+     * Whether this Uom is equivalent to another
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.10.0
+     *
+     * @param Uom $other
+     *
+     * @return bool
+     */
+    public function isSameValueAs(Uom $other)
+    {
+        return $this->getName() === $other->getName();
+    }
 }

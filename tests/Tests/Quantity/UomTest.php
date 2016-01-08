@@ -42,4 +42,39 @@ class UomTest extends \PHPUnit_Framework_TestCase
         $oz = Uom::OZ();
         $this->assertSame('OZ', (string) $oz);
     }
+
+    /**
+     * Test isSameValueAs()
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.10.0
+     *
+     * @dataProvider isSameValueAsProvider
+     */
+    public function testIsSameValueAs($uom, $other, $same)
+    {
+        $this->assertSame($same, $uom->isSameValueAs($other));
+    }
+
+    /**
+     * isSameValueAsProvider
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.10.0
+     *
+     * @return array
+     */
+    public static function isSameValueAsProvider()
+    {
+        $oz = Uom::OZ();
+
+        return [
+            [$oz, $oz, true],
+            [Uom::OZ(), Uom::OZ(), true],
+            [Uom::LB(), Uom::LB(), true],
+            [Uom::KG(), Uom::KG(), true],
+            [Uom::LB(), Uom::KG(), false],
+            [Uom::OZ(), Uom::LB(), false],
+        ];
+    }
 }
