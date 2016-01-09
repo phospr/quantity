@@ -12,6 +12,7 @@ namespace Phospr\Tests\Quantity;
 use Phospr\Fraction;
 use Phospr\Weight;
 use Phospr\Uom;
+use PHPUnit_Framework_TestCase;
 
 /**
  * WeightTest
@@ -19,7 +20,7 @@ use Phospr\Uom;
  * @author Tom Haskins-Vaughan <tom@tomhv.uk>
  * @since  0.3.0
  */
-class WeightTest extends \PHPUnit_Framework_TestCase
+class WeightTest extends PHPUnit_Framework_TestCase
 {
     /**
      * Test __callStatic

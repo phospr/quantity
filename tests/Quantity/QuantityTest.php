@@ -11,6 +11,7 @@ namespace Phospr\Tests\Quantity;
 
 use Phospr\Quantity;
 use Phospr\Uom;
+use PHPUnit_Framework_TestCase;
 
 /**
  * QuantityTest
@@ -18,7 +19,7 @@ use Phospr\Uom;
  * @author Tom Haskins-Vaughan <tom@tomhv.uk>
  * @since  0.9.0
  */
-class QuantityTest extends \PHPUnit_Framework_TestCase
+class QuantityTest extends PHPUnit_Framework_TestCase
 {
     /**
      * Test __callStatic
