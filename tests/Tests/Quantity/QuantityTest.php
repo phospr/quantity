@@ -9,8 +9,8 @@
 
 namespace Phospr\Tests\Quantity;
 
-use Phospr\Quantity,
-    Phospr\Uom;
+use Phospr\Quantity;
+use Phospr\Uom;
 
 /**
  * QuantityTest

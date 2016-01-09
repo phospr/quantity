@@ -10,6 +10,8 @@
 namespace Phospr;
 
 use Phospr\Fraction;
+use Phospr\Exception\Uom\ConversionNotSetException;
+use Phospr\Exception\Uom\BadConversionException;
 
 /**
  * Uom (Unit of Measure)
@@ -54,6 +56,9 @@ class Uom
      */
     public function __construct($name)
     {
+        // Make sure the name is always caps
+        $name = strtoupper($name);
+
         foreach (static::getUoms() as $type) {
             if (array_key_exists($name, $type)) {
                 $this->name = $name;
@@ -121,11 +126,20 @@ class Uom
      * @param Uom $from
      * @param Uom $to
      *
+     * @throws ConversionNotSetException Thown when a conversion is tried
+     * that has not been set in the conversions.json file
+     * @throws BadConversionException Thrown when a conversion is not set
+     * properly. (ex [1, 16])
      * @return Fraction
      */
     public static function getConversionFactor(Uom $from, Uom $to)
     {
-        if(!isset(static::$conversions)) {
+        // Check to see if we need to do a conversion
+        if ($from->isSameValueAs($to)) {
+            return new Fraction(1);
+        }
+
+        if (!isset(static::$conversions)) {
             static::$conversions = json_decode(
                 utf8_encode(
                     file_get_contents(__DIR__.'/conversions.json')
@@ -134,15 +148,27 @@ class Uom
             );
         }
 
-        $conversionValues = static::$conversions[$from->getName()][$to->getName()];
+        // First lets see if we have a conversion for the from to to
+        if (isset(static::$conversions[$from->getName()][$to->getName()])) {
+            $numeratorDenominatorPair = static::$conversions[$from->getName()][$to->getName()];
+        // I guess we didn't find one, try the inverse
+        } elseif (isset(static::$conversions[$to->getName()][$from->getName()])) {
+            // We found the inverse, set the conversion values appropriately
+            $numeratorDenominatorPair = array_reverse(static::$conversions[$to->getName()][$from->getName()]);
+        } else {
+            // no conversion found. throw an exception
+            throw new ConversionNotSetException($from->getName(), $to->getName());
+        }
 
-        if (count($conversionValues) > 1) {
+        // Is the conversion set up correctly
+        if (count($numeratorDenominatorPair) == 2) {
             return new Fraction(
-                $conversionValues[0],
-                $conversionValues[1]
+                $numeratorDenominatorPair[0],
+                $numeratorDenominatorPair[1]
             );
         } else {
-            return new Fraction($conversionValues[0]);
+            // Guess it wasn't
+            throw new BadConversionException();
         }
     }
 
@@ -156,7 +182,7 @@ class Uom
      */
     public static function getUoms()
     {
-        if(!isset(static::$uoms)) {
+        if (!isset(static::$uoms)) {
             static::$uoms = json_decode(
                 utf8_encode(
                     file_get_contents(__DIR__.'/uoms.json')
