@@ -129,7 +129,7 @@ class Uom
      * @throws ConversionNotSetException Thown when a conversion is tried
      * that has not been set in the conversions.json file
      * @throws BadConversionException Thrown when a conversion is not set
-     * properly. (ex [1, 16])
+     * properly, e.g. [1] should be [1, 16]
      * @return Fraction
      */
     public static function getConversionFactor(Uom $from, Uom $to)
