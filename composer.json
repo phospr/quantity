@@ -19,7 +19,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Phospr\\": "src"
+            "Phospr\\": "src",
+            "Phospr\\Tests\\": "tests"
         }
     }
 }
