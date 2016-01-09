@@ -10,6 +10,7 @@
 namespace Phospr\Tests\Quantity;
 
 use Phospr\Uom;
+use PHPUnit_Framework_TestCase;
 
 /**
  * UomTest
@@ -17,7 +18,7 @@ use Phospr\Uom;
  * @author Tom Haskins-Vaughan <tom@tomhv.uk>
  * @since  0.3.0
  */
-class UomTest extends \PHPUnit_Framework_TestCase
+class UomTest extends PHPUnit_Framework_TestCase
 {
     /**
      * Test __callStatic

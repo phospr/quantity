@@ -10,8 +10,9 @@
 namespace Phospr;
 
 use Phospr\Fraction;
-use Phospr\Exception\Uom\ConversionNotSetException;
+use Phospr\Exception\Quantity\InvalidUomException;
 use Phospr\Exception\Uom\BadConversionException;
+use Phospr\Exception\Uom\ConversionNotSetException;
 
 /**
  * Uom (Unit of Measure)
@@ -68,7 +69,7 @@ class Uom
         }
 
         // can't find Uom by name
-        throw new Exception\Quantity\InvalidUomException($name);
+        throw new InvalidUomException($name);
     }
 
     /**

@@ -10,6 +10,7 @@
 namespace Phospr;
 
 use Phospr\Fraction;
+use Phospr\Exception\Quantity\InvalidUomException;
 
 /**
  * AbstractQuantity
@@ -55,7 +56,7 @@ abstract class AbstractQuantity
 
         // check that the given Uom belongs to the given sub class
         if (!array_key_exists($uom->getName(), $uoms[$subClassName])) {
-            throw new Exception\Quantity\InvalidUomException($uom->getName());
+            throw new InvalidUomException($uom->getName());
         }
 
         $this->amount = $amount;
