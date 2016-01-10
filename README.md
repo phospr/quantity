@@ -36,10 +36,7 @@ $weight = Weight::LB(10);
 In the following example, we convert 2 lb (pounds) into ounces:
 
 ```php
-$pounds = Weight::LB(2);
-$ounces = $pounds->to(Uom::OZ());
-
-echo $ounces->getAmount(); // 32
+echo Weight::LB(2)->to(Uom::OZ()); // 32
 ```
 
 #### Using Fractions
@@ -47,11 +44,8 @@ echo $ounces->getAmount(); // 32
 The amount part of a Quantity is expressed as a [Fraction](https://github.com/phospr/fraction).  This allows us to convert Quantities accurately:
 
 ```php
-$ounces = Weight::OZ(28);
-$pounds = $ounces->to(Uom::LB());
-echo $pounds; // 1 3/4 LB
+echo Weight::OZ(28)->to(Uom::LB()); // 1 3/4 LB
 ```
-
 
 ## Installation
 
