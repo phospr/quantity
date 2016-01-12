@@ -15,6 +15,6 @@ namespace Phospr;
  * @author Tom Haskins-Vaughan <tom@tomhv.uk>
  * @since  0.3.0
  */
-class Quantity extends AbstractQuantity
+final class Quantity extends AbstractQuantity
 {
 }

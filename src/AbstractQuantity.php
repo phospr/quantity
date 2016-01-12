@@ -9,6 +9,7 @@
 
 namespace Phospr;
 
+use InvalidArgumentException;
 use Phospr\Fraction;
 use Phospr\Exception\Quantity\InvalidUomException;
 
@@ -155,5 +156,52 @@ abstract class AbstractQuantity
             $this->getAmount()->multiply($conversionFactor),
             $uom
         );
+    }
+
+    /**
+     * Create Quantity from a string, e.g.
+     *
+     *     * 1 LB
+     *     * 0.5 KG
+     *     * 1/2 OZ
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.12.0
+     *
+     * @param string $string
+     *
+     * @return mixed
+     */
+    public static function fromString($string)
+    {
+        // first try an extract a Uom
+        foreach (Uom::getUoms() as $uomGroup) {
+            foreach ($uomGroup as $uomName => $description) {
+                if (false !== strpos($string, $uomName)) {
+                    // ok, we've found a Uom, remove it, leaving the amount
+                    $amountAsString = trim(str_replace($uomName, '', $string));
+
+                    // now see if the rest is a fraction
+                    try {
+                        return new static(
+                            Fraction::fromString($amountAsString),
+                            new Uom($uomName)
+                        );
+                    } catch (InvalidArgumentException $e) {}
+
+                    // no, so see if it is float
+                    return new static(
+                        Fraction::fromFloat($amountAsString),
+                        new Uom($uomName)
+                    );
+                }
+            }
+        }
+
+        throw new InvalidArgumentException(sprintf(
+            'Cannot parse "%s" as a %s',
+            $string,
+            get_called_class()
+        ));
     }
 }

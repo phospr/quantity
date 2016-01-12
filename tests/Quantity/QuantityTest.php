@@ -60,4 +60,64 @@ class QuantityTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame('8 EACH', (string) $quantity);
     }
+
+    /**
+     * Test fromString
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.12.0
+     *
+     * @dataProvider fromStringProvider
+     */
+    public function testFromString($fromString, $toString)
+    {
+        $this->assertSame($toString, (string) Quantity::fromString($fromString));
+    }
+
+    /**
+     * Test fromString exception
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.12.0
+     *
+     * @dataProvider fromStringExceptionProvider
+     * @expectedException InvalidArgumentException
+     */
+    public function testFromStringException($string)
+    {
+        Quantity::fromString($string);
+    }
+
+    /**
+     * fromString provider
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.12.0
+     *
+     * @return array
+     */
+    public static function fromStringProvider()
+    {
+        return [
+            ['1EACH', '1 EACH'],
+            ['1 EACH', '1 EACH'],
+            ['0.5 EACH', '1/2 EACH'],
+            ['2/3 EACH', '2/3 EACH'],
+        ];
+    }
+
+    /**
+     * fromString exception provider
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.12.0
+     *
+     * @return array
+     */
+    public static function fromStringExceptionProvider()
+    {
+        return [
+            ['1 LB'],
+        ];
+    }
 }

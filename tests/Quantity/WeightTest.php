@@ -71,10 +71,39 @@ class WeightTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test fromString
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.12.0
+     *
+     * @dataProvider fromStringProvider
+     */
+    public function testFromString($fromString, $toString)
+    {
+        $this->assertSame($toString, (string) Weight::fromString($fromString));
+    }
+
+    /**
+     * Test fromString exception
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.12.0
+     *
+     * @dataProvider fromStringExceptionProvider
+     * @expectedException InvalidArgumentException
+     */
+    public function testFromStringException($string)
+    {
+        Weight::fromString($string);
+    }
+
+    /**
      * toProvider
      *
      * @author Christopher Tatro <c.m.tatro@gmail.com>
      * @since  0.10.0
+     *
+     * @return array
      */
     public function toProvider()
     {
@@ -90,6 +119,52 @@ class WeightTest extends PHPUnit_Framework_TestCase
             [1, 'KG', 'LB', 110231, 50000],
             [50, 'KG', 'LB', 110231, 1000],
             [1, 'KG', 'OZ', 352739619, 10000000],
+        ];
+    }
+
+    /**
+     * fromString provider
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.12.0
+     *
+     * @return array
+     */
+    public static function fromStringProvider()
+    {
+        return [
+            ['1LB', '1 LB'],
+            ['1 LB', '1 LB'],
+            ['1G', '1 G'],
+            ['1 G', '1 G'],
+            ['1KG', '1 KG'],
+            ['1 KG', '1 KG'],
+            ['1OZ', '1 OZ'],
+            ['1 OZ', '1 OZ'],
+            [' 1LB', '1 LB'],
+            ['0.5 OZ', '1/2 OZ'],
+            ['2/3 OZ', '2/3 OZ'],
+            ['1. LB', '1 LB'],
+            ['245/3 OZ', '81 2/3 OZ'],
+        ];
+    }
+
+    /**
+     * fromString exception provider
+     *
+     * @author Tom Haskins-Vaughan <tom@tomhv.uk>
+     * @since  0.12.0
+     *
+     * @return array
+     */
+    public static function fromStringExceptionProvider()
+    {
+        return [
+            ['1 EACH'],
+            ['1 L'],
+            ['1L'],
+            ['1 Lb'],
+            ['1 LB 0'],
         ];
     }
 }
