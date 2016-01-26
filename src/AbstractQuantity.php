@@ -174,10 +174,16 @@ abstract class AbstractQuantity
      */
     public static function fromString($string)
     {
-        // first try an extract a Uom
+        // trim white space
+        $string = trim($string);
+
+        // look for the first Uom at the end of the string
         foreach (Uom::getUoms() as $uomGroup) {
             foreach ($uomGroup as $uomName => $description) {
-                if (false !== strpos($string, $uomName)) {
+                $expectedPostion = strlen($string) - strlen($uomName);
+                $actualPosition = strpos($string, $uomName);
+
+                if ($expectedPostion === $actualPosition) {
                     // ok, we've found a Uom, remove it, leaving the amount
                     $amountAsString = trim(str_replace($uomName, '', $string));
 
