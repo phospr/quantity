@@ -134,6 +134,7 @@ class WeightTest extends PHPUnit_Framework_TestCase
     {
         return [
             ['1LB', '1 LB'],
+            ['1LB ', '1 LB'],
             ['1 LB', '1 LB'],
             ['1G', '1 G'],
             ['1 G', '1 G'],
@@ -142,6 +143,7 @@ class WeightTest extends PHPUnit_Framework_TestCase
             ['1OZ', '1 OZ'],
             ['1 OZ', '1 OZ'],
             [' 1LB', '1 LB'],
+            [' 1LB ', '1 LB'],
             ['0.5 OZ', '1/2 OZ'],
             ['2/3 OZ', '2/3 OZ'],
             ['1. LB', '1 LB'],
@@ -165,6 +167,11 @@ class WeightTest extends PHPUnit_Framework_TestCase
             ['1L'],
             ['1 Lb'],
             ['1 LB 0'],
+            ['1 LBLB'],
+            ['1 LB 4 OZ'],
+            ['1LB0'],
+            ['1LB1/2'],
+            ['1LB/2LB'],
         ];
     }
 }
