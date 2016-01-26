@@ -1,5 +1,7 @@
 # Phospr/Quantity
 
+[![Build Status](https://travis-ci.org/phospr/quantity.svg)](https://travis-ci.org/phospr/quantity)
+
 A library to represent various quantities as value objects with the ability to convert from one Unit of Measurement to another.  Inspired by [mathiasverraes/money](https://github.com/mathiasverraes/money/).
 
 A Quantity is made up of an amount (expressed as a [Fraction](https://github.com/phospr/fraction)) and a Uom (Unit of Measure).
