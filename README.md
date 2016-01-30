@@ -1,6 +1,7 @@
 # Phospr/Quantity
 
 [![Build Status](https://travis-ci.org/phospr/quantity.svg)](https://travis-ci.org/phospr/quantity)
+[![Coverage Status](https://coveralls.io/repos/github/phospr/quantity/badge.svg)](https://coveralls.io/github/phospr/quantity)
 
 A library to represent various quantities as value objects with the ability to convert from one Unit of Measurement to another.  Inspired by [mathiasverraes/money](https://github.com/mathiasverraes/money/).
 
