@@ -119,6 +119,8 @@ class WeightTest extends PHPUnit_Framework_TestCase
             [1, 'KG', 'LB', 110231, 50000],
             [50, 'KG', 'LB', 110231, 1000],
             [1, 'KG', 'OZ', 352739619, 10000000],
+            [1, 'G', 'KG', 1, 1000],
+            [1, 'KG', 'G', 1000, 1],
         ];
     }
 
