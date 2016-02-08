@@ -71,6 +71,20 @@ class WeightTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test to exception
+     *
+     * @author Christopher Tatro <c.m.tatro@gmail.com>
+     * @since  1.2.0
+     *
+     * @dataProvider toExceptionProvider
+     * @expectedException Phospr\Exception\Uom\ConversionNotSetException
+     */
+    public function testToException($weight, $uom)
+    {
+        $weight->to($uom);
+    }
+
+    /**
      * Test fromString
      *
      * @author Tom Haskins-Vaughan <tom@tomhv.uk>
@@ -98,6 +112,37 @@ class WeightTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test add
+     *
+     * @author Christopher Tatro <c.m.tatro@gmail.com>
+     * @since  1.2.0
+     *
+     * @dataProvider addProvider
+     */
+    public function testAdd($weight1, $weight2, $resultWeight)
+    {
+        $newWeight = $weight1->add($weight2);
+
+        // Test the new quantities amount
+        $this->assertTrue(
+            $resultWeight->isSameValueAs($newWeight)
+        );
+    }
+
+    /**
+     * Test isSameValueAs
+     *
+     * @author Christopher Tatro <c.m.tatro@gmail.com>
+     * @since 1.2.0
+     *
+     * @dataProvider isSameValueAsProvider
+     */
+    public function testIsSameValueAs($weight1, $weight2, $result)
+    {
+        $this->assertSame($result, $weight1->isSameValueAs($weight2));
+    }
+
+    /**
      * toProvider
      *
      * @author Christopher Tatro <c.m.tatro@gmail.com>
@@ -121,6 +166,28 @@ class WeightTest extends PHPUnit_Framework_TestCase
             [1, 'KG', 'OZ', 352739619, 10000000],
             [1, 'G', 'KG', 1, 1000],
             [1, 'KG', 'G', 1000, 1],
+        ];
+    }
+
+    /**
+     * toExceptionProvider
+     *
+     * @author Christopher Tatro <c.m.tatro@gmail.com>
+     * @since  1.2.0
+     *
+     * @return array
+     */
+    public function toExceptionProvider()
+    {
+        return [
+            // LBS
+            [Weight::LB(1), new Uom('G')],
+            // Ounces
+            [Weight::OZ(16), new Uom('G')],
+            // KiloGrams
+            // Grams
+            [Weight::G(1), new Uom('LB')],
+            [Weight::G(1), new Uom('OZ')],
         ];
     }
 
@@ -174,6 +241,43 @@ class WeightTest extends PHPUnit_Framework_TestCase
             ['1LB0'],
             ['1LB1/2'],
             ['1LB/2LB'],
+        ];
+    }
+
+    /**
+     * add provider
+     *
+     * @author Christopher Tatro <c.m.tatro@gmail.com>
+     * @since  1.2.0
+     *
+     * @return array
+     */
+    public static function addProvider()
+    {
+        return [
+            [Weight::OZ(10), Weight::LB(2), Weight::OZ(42)],
+            [Weight::KG(3), Weight::G(1), Weight::KG(3001, 1000)],
+        ];
+    }
+
+    /**
+     * isSameValueAs provider
+     *
+     * @author Christopher Tatro <c.m.tatro@gmail.com>
+     * @since  1.2.0
+     *
+     * @return array
+     */
+    public static function isSameValueAsProvider()
+    {
+        return [
+            [Weight::OZ(10), Weight::OZ(2), false],
+            [Weight::OZ(3), Weight::OZ(3), true],
+            [Weight::OZ(3), Weight::LB(3), false],
+            [Weight::OZ(3), Weight::KG(3), false],
+            [Weight::OZ(3), Weight::G(3), false],
+            [Weight::OZ(16), Weight::LB(1), false],
+            [Weight::LB(3), Weight::LB(3), true],
         ];
     }
 }
