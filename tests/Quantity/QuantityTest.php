@@ -89,6 +89,28 @@ class QuantityTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test multiplyBy
+     *
+     * @author Christopher Tatro <c.m.tatro@gmail.com>
+     * @since  1.2.0
+     *
+     * @dataProvider fromStringExceptionProvider
+     * @expectedException InvalidArgumentException
+     */
+    public function testMultiplyby()
+    {
+        $quantity = Quantity::EACH(10);
+
+        $newQuantity = $quantity->multiplyBy(3);
+
+        // Test the new quantities amount
+        $this->assertSame('30', (string) $newQuantity->getAmount());
+
+        // Make sure the old quantities amount stayed the same
+        $this->assertSame('10', (string) $quantity->getAmount());
+    }
+
+    /**
      * fromString provider
      *
      * @author Tom Haskins-Vaughan <tom@tomhv.uk>
