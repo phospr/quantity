@@ -193,7 +193,8 @@ abstract class AbstractQuantity
                             Fraction::fromString($amountAsString),
                             new Uom($uomName)
                         );
-                    } catch (InvalidArgumentException $e) {}
+                    } catch (InvalidArgumentException $e) {
+                    }
 
                     // no, so see if it is float
                     return new static(
@@ -209,5 +210,22 @@ abstract class AbstractQuantity
             $string,
             get_called_class()
         ));
+    }
+
+    /**
+     * MultiplyBy
+     *
+     * Takes a fraction to multiply the weight by and returns the new weight
+     *
+     * @author Christopher Tatro <c.m.tatro@gmail.com>
+     * @since  1.2.0
+     *
+     * @param Fraction $fraction
+     *
+     * @return Quantity
+     */
+    public function multiplyBy(Fraction $fraction)
+    {
+        return new self($this->getAmount()->multiply($fraction), $this->getUom());
     }
 }
