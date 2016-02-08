@@ -89,6 +89,20 @@ class QuantityTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test isSameValueAs
+     *
+     * @author Christopher Tatro <c.m.tatro@gmail.com>
+     * @since 1.2.0
+     */
+    public function testIsSameValueAs()
+    {
+        $quantity = Quantity::EACH(10);
+
+        $this->assertTrue($quantity->isSameValueAs(Quantity::EACH(10)));
+        $this->assertFalse($quantity->isSameValueAs(Quantity::EACH(9)));
+    }
+
+    /**
      * fromString provider
      *
      * @author Tom Haskins-Vaughan <tom@tomhv.uk>

@@ -98,6 +98,27 @@ class WeightTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test isSameValueAs
+     *
+     * @author Christopher Tatro <c.m.tatro@gmail.com>
+     * @since 1.2.0
+     */
+    public function testIsSameValueAs()
+    {
+        $weight = Weight::OZ(10);
+
+        $this->assertTrue($weight->isSameValueAs(Weight::OZ(10)));
+
+        $this->assertFalse($weight->isSameValueAs(Weight::OZ(9)));
+        $this->assertFalse($weight->isSameValueAs(Weight::G(9)));
+
+        $weight = Weight::LB(1);
+        $this->assertTrue($weight->isSameValueAs(Weight::LB(1)));
+        // 1 LB is not the same as 16 OZ although they are equal
+        $this->assertFalse($weight->isSameValueAs(Weight::OZ(16)));
+    }
+
+    /**
      * toProvider
      *
      * @author Christopher Tatro <c.m.tatro@gmail.com>
