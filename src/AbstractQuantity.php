@@ -210,4 +210,31 @@ abstract class AbstractQuantity
             get_called_class()
         ));
     }
+
+    /**
+     * isSameValueAs
+     *
+     * ValueObject comparison
+     *
+     * @author Christopher Tatro <c.m.tatro@gmail.com>
+     * @since 1.2.0
+     *
+     * @param AbstractQuantity $quantity
+     *
+     * @return bool
+     */
+    public function isSameValueAs(AbstractQuantity $quantity)
+    {
+        // Check the amounts
+        if (!$this->getAmount()->isSameValueAs($quantity->getAmount())) {
+            return false;
+        }
+
+        // Check the unit of measure
+        if (!$this->getUom()->isSameValueAs($quantity->getUom())) {
+            return false;
+        }
+
+        return true;
+    }
 }
