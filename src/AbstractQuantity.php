@@ -193,7 +193,8 @@ abstract class AbstractQuantity
                             Fraction::fromString($amountAsString),
                             new Uom($uomName)
                         );
-                    } catch (InvalidArgumentException $e) {}
+                    } catch (InvalidArgumentException $e) {
+                    }
 
                     // no, so see if it is float
                     return new static(
@@ -209,5 +210,71 @@ abstract class AbstractQuantity
             $string,
             get_called_class()
         ));
+    }
+
+    /**
+     * multiplyBy
+     *
+     * Takes a fraction to multiply the quantity by and returns the new quantity
+     *
+     * @author Christopher Tatro <c.m.tatro@gmail.com>
+     * @since  1.2.0
+     *
+     * @param Fraction $fraction
+     *
+     * @return Quantity
+     */
+    public function multiplyBy(Fraction $fraction)
+    {
+        return new static($this->getAmount()->multiply($fraction), $this->getUom());
+    }
+
+    /**
+     * Add
+     *
+     * Add two quantities together, keeping current Uom
+     *
+     * @author Christopher Tatro <c.m.tatro@gmail.com>
+     * @since  1.2.0
+     *
+     * @param AbstractQuantity $quantity
+     *
+     * @return Quantity
+     */
+    public function add(AbstractQuantity $quantity)
+    {
+        $convertedQuantity = $quantity->to($this->getUom());
+
+        return new static(
+            $this->getAmount()->add($convertedQuantity->getAmount()),
+            $this->getUom()
+        );
+    }
+
+    /**
+     * isSameValueAs
+     *
+     * ValueObject comparison, strict equals
+     *
+     * @author Christopher Tatro <c.m.tatro@gmail.com>
+     * @since 1.2.0
+     *
+     * @param AbstractQuantity $quantity
+     *
+     * @return bool
+     */
+    public function isSameValueAs(AbstractQuantity $quantity)
+    {
+        // Check the amounts
+        if (!$this->getAmount()->isSameValueAs($quantity->getAmount())) {
+            return false;
+        }
+
+        // Check the unit of measure
+        if (!$this->getUom()->isSameValueAs($quantity->getUom())) {
+            return false;
+        }
+
+        return true;
     }
 }
